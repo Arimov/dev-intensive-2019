@@ -35,7 +35,7 @@ class User (
         private var lastId : Int = -1
         fun makeUser(fullName:String?) : User {
             lastId++
-            var (firstName, lastName) = Utils.ParseFullName(fullName)
+            val (firstName, lastName) = Utils.parseFullName(fullName)
             return  User(lastId.toString(), firstName = firstName,lastName = lastName)
         }
     }
@@ -71,7 +71,7 @@ class User (
         fun avatar(avatar: String) = apply { this.avatar = avatar }
         fun rating(rating: Int) = apply { this.rating = rating }
         fun respect(respect: Int) = apply { this.respect = respect }
-        fun lastVisit(rating: Date) = apply { this.lastVisit = lastVisit }
+        fun lastVisit(lastVisit: Date?) = apply { this.lastVisit = lastVisit }
         fun isOnline(isOnline: Boolean) = apply { this.isOnline = isOnline }
         fun build() = User(this)
     }
