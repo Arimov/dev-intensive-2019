@@ -20,7 +20,7 @@ class User (
         avatar=null
     )
 
-    private constructor(builder: Builder) : this(
+/*    private constructor(builder: Builder) : this(
         builder.id,
         builder.firstName,
         builder.lastName,
@@ -29,7 +29,7 @@ class User (
         builder.respect,
         builder.lastVisit,
         builder.isOnline
-        )
+        )*/
 
     companion object Factory{
         private var lastId : Int = -1
@@ -40,6 +40,68 @@ class User (
         }
     }
 
+    class Builder() {
+        private var id: String? = null
+        private var firstName: String? = null
+        private var lastName: String? = null
+        private var avatar: String? = null
+        private var rating: Int = 0
+        private var respect: Int = 0
+        private var lastVisit: Date? = null
+        private var isOnline: Boolean = false
+
+        fun id(value: String?): Builder {
+            id = value
+            return this
+        }
+
+        fun firstName(value: String?): Builder {
+            firstName = value
+            return this
+        }
+
+        fun lastName(value: String?): Builder {
+            lastName = value
+            return this
+        }
+
+        fun avatar(value: String?): Builder {
+            avatar = value
+            return this
+        }
+
+        fun rating(value: Int): Builder {
+            rating = value
+            return this
+        }
+
+        fun respect(value: Int): Builder {
+            respect = value
+            return this
+        }
+
+        fun lastVisit(value: Date?): Builder {
+            lastVisit = value
+            return this
+        }
+
+        fun isOnline(value: Boolean): Builder {
+            isOnline = value
+            return this
+        }
+
+        fun build() = User(
+            id ?: (++lastId).toString(),
+            firstName,
+            lastName,
+            avatar,
+            rating,
+            respect,
+            lastVisit,
+            isOnline
+        )
+    }
+/*
     class Builder{
         var id: String = "0"
             private set
@@ -74,5 +136,5 @@ class User (
         fun lastVisit(lastVisit: Date?) = apply { this.lastVisit = lastVisit }
         fun isOnline(isOnline: Boolean) = apply { this.isOnline = isOnline }
         fun build() = User(this)
-    }
+    }*/
 }
