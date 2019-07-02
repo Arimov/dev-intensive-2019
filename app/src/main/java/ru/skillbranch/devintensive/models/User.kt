@@ -41,7 +41,7 @@ class User (
     }
 
     class Builder{
-        var id: String = ""
+        var id: String = "0"
             private set
 
         var firstName: String? = null
@@ -59,7 +59,7 @@ class User (
         var respect : Int = 0
             private set
 
-        var lastVisit : Date? = null
+        var lastVisit : Date? = Date()
             private set
 
         var isOnline : Boolean = false
