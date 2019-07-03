@@ -31,7 +31,23 @@ enum class TimeUnits{
     SECOND,
     MINUTE,
     HOUR,
-    DAY
+    DAY;
+
+    fun plural(value: Int): String{
+        val strValues = mapOf(
+            SECOND to "секунд секунду секунды",
+            MINUTE to "минут минуту минуты",
+            HOUR to "часов час часа",
+            DAY to "дней день дня"
+        )
+        var variant = 0
+        when(value.toString().substring(value.toString().length-1).toInt()){
+            1 -> variant = 1
+            in (2..4) -> variant = 2
+        }
+        if(value in (11..14)) variant = 0
+        return value.toString() + " " + strValues[this]!!.split(" ")[variant]
+    }
 }
 
 fun Date.humanizeDiff(date: Date = Date()): String{
