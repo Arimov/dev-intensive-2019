@@ -41,7 +41,7 @@ class User (
     }
 
     class Builder() {
-        private var id: String? = null
+        private var id: String = (++lastId).toString()
         private var firstName: String? = null
         private var lastName: String? = null
         private var avatar: String? = null
@@ -50,7 +50,7 @@ class User (
         private var lastVisit: Date? = Date()
         private var isOnline: Boolean = false
 
-        fun id(value: String?): Builder {
+        fun id(value: String): Builder {
             id = value
             return this
         }
@@ -91,7 +91,7 @@ class User (
         }
 
         fun build() = User(
-            id ?: (++lastId).toString(),
+            id,
             firstName,
             lastName,
             avatar,
