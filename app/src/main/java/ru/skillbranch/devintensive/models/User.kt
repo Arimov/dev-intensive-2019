@@ -47,7 +47,7 @@ class User (
         private var avatar: String? = null
         private var rating: Int = 0
         private var respect: Int = 0
-        private var lastVisit: Date? = null
+        private var lastVisit: Date? = Date()
         private var isOnline: Boolean = false
 
         fun id(value: String?): Builder {
