@@ -30,8 +30,3 @@ abstract class BaseMessage(
         }
     }
 }
-
-enum class TypeMessage{
-    TEXT,
-    IMAGE
-}
