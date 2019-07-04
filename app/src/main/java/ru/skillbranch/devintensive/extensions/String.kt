@@ -7,6 +7,6 @@ fun String.truncate(count: Int = 16): String{
         return this.toString().trimEnd()
     }
     else{
-        return this.substring(0,countSymb+1).trimEnd() + "..."
+        return this.substring(0,countSymb).trimEnd() + "..."
     }
 }
