@@ -3,7 +3,7 @@ package ru.skillbranch.devintensive.models
 import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
-class User (
+data class User (
     val id : String,
     var firstName : String?,
     var lastName : String?,
@@ -42,13 +42,13 @@ class User (
 
 
     class Builder {
-        private var id: String = (++Factory.lastId).toString()
+        private var id: String = (Factory.lastId++).toString()
         private var firstName: String? = null
         private var lastName: String? = null
         private var avatar: String? = null
         private var rating: Int = 0
         private var respect: Int = 0
-        private var lastVisit: Date? = null
+        private var lastVisit: Date? = Date()
         private var isOnline: Boolean = false
 
         fun id(id: String): Builder {
