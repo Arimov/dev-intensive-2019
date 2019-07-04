@@ -10,3 +10,8 @@ fun String.truncate(count: Int = 16): String{
         return this.substring(0,countSymb).trimEnd() + "..."
     }
 }
+
+fun String.stripHtml(): String{
+    return this.replace(Regex("<[^<]*?>|&(.)+;"),"").
+        replace(Regex("[^\\S\\r\\n]+")," ")
+}
