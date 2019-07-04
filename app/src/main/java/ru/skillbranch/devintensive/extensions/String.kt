@@ -1,10 +1,12 @@
 package ru.skillbranch.devintensive.extensions
 
 fun String.truncate(count: Int = 16): String{
-    if(this.toString().length <= count){
+    var countSymb = 1
+    if(count >= 1) countSymb  = count
+    if(this.toString().length < countSymb){
         return this.toString().trimEnd()
     }
     else{
-        return this.substring(0,count).trimEnd() + "..."
+        return this.substring(0,countSymb+1).trimEnd() + "..."
     }
 }
