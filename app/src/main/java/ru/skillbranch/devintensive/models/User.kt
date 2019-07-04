@@ -67,14 +67,14 @@ class User (
         var isOnline : Boolean = false
             private set
 
-        fun id(id: String) = apply { this.id = id }
-        fun firstName(firstName: String?) = apply { this.firstName = firstName }
-        fun lastName(lastName: String?) = apply { this.lastName = lastName }
-        fun avatar(avatar: String?) = apply { this.avatar = avatar }
-        fun rating(rating: Int) = apply { this.rating = rating }
-        fun respect(respect: Int) = apply { this.respect = respect }
-        fun lastVisit(lastVisit: Date?) = apply { this.lastVisit = lastVisit }
-        fun isOnline(isOnline: Boolean) = apply { this.isOnline = isOnline }
+        fun id(id: String) = apply { this.id = id; return this }
+        fun firstName(firstName: String?) = apply { this.firstName = firstName; return this }
+        fun lastName(lastName: String?) = apply { this.lastName = lastName; return this }
+        fun avatar(avatar: String?) = apply { this.avatar = avatar; return this }
+        fun rating(rating: Int) = apply { this.rating = rating; return this }
+        fun respect(respect: Int) = apply { this.respect = respect; return this }
+        fun lastVisit(lastVisit: Date?) = apply { this.lastVisit = lastVisit; return this }
+        fun isOnline(isOnline: Boolean) = apply { this.isOnline = isOnline; return this }
         fun build() = User(this)
     }
 }
