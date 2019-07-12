@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         sendBtn = iv_send
         sendBtn.setOnClickListener(this)
 
-        var status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
-        var question = savedInstanceState?.getString("QUESTION") ?: Bender.Question.NAME.name
+        val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
+        val question = savedInstanceState?.getString("QUESTION") ?: Bender.Question.NAME.name
 
         benderObj = Bender(Bender.Status.valueOf(status), Bender.Question.valueOf(question))
 
@@ -75,10 +75,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         Log.d("M_MainActivity","onDestroy")
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState?.putString("STATUS", benderObj.status.name)
-        outState?.putString("QUESTION", benderObj.question.name)
+        outState.putString("STATUS", benderObj.status.name)
+        outState.putString("QUESTION", benderObj.question.name)
         Log.d("M_MainActivity","onSaveInstanceState ${benderObj.status.name} ${benderObj.question.name}")
     }
 
