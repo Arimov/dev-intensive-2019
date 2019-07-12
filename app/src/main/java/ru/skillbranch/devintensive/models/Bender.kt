@@ -56,7 +56,7 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
             override fun nextQuestion(): Question = PROFESSION
 
             override fun validate(answer: String): Pair<Boolean, String> {
-                if (answer[0].toString() in "A".."Z" || answer[0].toString() in "А".."Я")
+                if (answer[0].isUpperCase())
                     return (true to "")
                 else
                     return (false to "Имя должно начинаться с заглавной буквы")
@@ -66,7 +66,7 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
             override fun nextQuestion(): Question = MATERIAL
 
             override fun validate(answer: String): Pair<Boolean, String> {
-                if (answer[0].toString() in "a".."z" || answer[0].toString() in "а".."я")
+                if (answer[0].isLowerCase())
                     return (true to "")
                 else
                     return (false to "Профессия должна начинаться со строчной буквы")
