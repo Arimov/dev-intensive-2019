@@ -23,3 +23,11 @@ fun Activity.isKeyboardClosed(): Boolean {
     val screenHeight = rootView.getRootView().getHeight()
     return !((r.bottom - r.top) < screenHeight)
 }
+
+fun Activity.isKeyboardOpen(): Boolean {
+    val r = Rect()
+    val rootView = this.window.decorView // this = activity
+    rootView.getWindowVisibleDisplayFrame(r)
+    val screenHeight = rootView.getRootView().getHeight()
+    return ((r.bottom - r.top) < screenHeight)
+}
