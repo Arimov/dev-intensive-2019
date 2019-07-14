@@ -62,7 +62,7 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
                     return (false to "Имя должно начинаться с заглавной буквы")
             }
         },
-        PROFESSION("Назови мою профессию", listOf("сгибальщик", "bender")) {
+        PROFESSION("Назови мою профессию?", listOf("сгибальщик", "bender")) {
             override fun nextQuestion(): Question = MATERIAL
 
             override fun validate(answer: String): Pair<Boolean, String> {
