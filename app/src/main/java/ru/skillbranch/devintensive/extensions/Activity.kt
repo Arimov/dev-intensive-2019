@@ -4,11 +4,16 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Rect
 import android.view.View
-import android.view.inputmethod.InputMethod
 import android.view.inputmethod.InputMethodManager
-import androidx.core.view.isVisible
-import android.opengl.ETC1.getHeight
+import kotlin.math.roundToLong
+import android.util.TypedValue
 
+
+fun Activity.convertDpToPx(dp: Float): Long {
+    val r = this.resources
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP, dp, r.displayMetrics).roundToLong()
+}
 
 
 fun Activity.hideKeyboard() {
@@ -16,18 +21,16 @@ fun Activity.hideKeyboard() {
     inputManager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.SHOW_FORCED)
 }
 
-fun Activity.isKeyboardClosed(): Boolean {
-    val r = Rect()
-    val rootView = this.window.decorView // this = activity
-    rootView.getWindowVisibleDisplayFrame(r)
-    val screenHeight = rootView.getRootView().getHeight()
-    return !((r.bottom - r.top) < screenHeight)
-}
-
 fun Activity.isKeyboardOpen(): Boolean {
     val r = Rect()
-    val rootView = this.window.decorView // this = activity
+    val rootView = findViewById<View>(android.R.id.content)
     rootView.getWindowVisibleDisplayFrame(r)
-    val screenHeight = rootView.getRootView().getHeight()
-    return ((r.bottom - r.top) < screenHeight)
+    val heightDiff = rootView.height - r.height()
+    val marginOfError = this.convertDpToPx(50F)
+
+    return heightDiff > marginOfError
+}
+
+fun Activity.isKeyboardClosed(): Boolean {
+    return this.isKeyboardOpen().not()
 }

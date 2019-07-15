@@ -5,6 +5,7 @@ import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -33,77 +34,86 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         textTxt = tv_text
         messageEt = et_message
         sendBtn = iv_send
-        sendBtn.setOnClickListener(this)
 
         val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
         val question = savedInstanceState?.getString("QUESTION") ?: Bender.Question.NAME.name
 
         benderObj = Bender(Bender.Status.valueOf(status), Bender.Question.valueOf(question))
 
-        Log.d("M_MainActivity","onCreate $status $question")
+        Log.d("M_MainActivity", "onCreate $status $question")
 
-        val (r,g,b) = benderObj.status.color
+        val (r, g, b) = benderObj.status.color
         benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
 
         textTxt.text = benderObj.askQuestion()
 
-        messageEt.setOnEditorActionListener{ textView, actionId, keyEvent ->
-            if(actionId == EditorInfo.IME_ACTION_DONE) {
+        /*messageEt.setOnEditorActionListener { textView, actionId, keyEvent ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 proccesing_input()
             }
             messageEt.clearFocus()
             false
 
+        }*/
+        turnActionDone(messageEt)
+        sendBtn.setOnClickListener(this)
+    }
+
+    private fun turnActionDone(editText: EditText){
+        editText.setRawInputType(InputType.TYPE_CLASS_TEXT)
+        editText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) sendBtn.performClick()
+            false
         }
     }
 
-    override fun onRestart(){
+    override fun onRestart() {
         super.onRestart()
-        Log.d("M_MainActivity","onRestart")
+        Log.d("M_MainActivity", "onRestart")
     }
 
-    override  fun onStart(){
+    override fun onStart() {
         super.onStart()
-        Log.d("M_MainActivity","onStart")
+        Log.d("M_MainActivity", "onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d("M_MainActivity","onResume")
+        Log.d("M_MainActivity", "onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d("M_MainActivity","onPause")
+        Log.d("M_MainActivity", "onPause")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d("M_MainActivity","onStop")
+        Log.d("M_MainActivity", "onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("M_MainActivity","onDestroy")
+        Log.d("M_MainActivity", "onDestroy")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("STATUS", benderObj.status.name)
         outState.putString("QUESTION", benderObj.question.name)
-        Log.d("M_MainActivity","onSaveInstanceState ${benderObj.status.name} ${benderObj.question.name}")
+        Log.d("M_MainActivity", "onSaveInstanceState ${benderObj.status.name} ${benderObj.question.name}")
     }
 
     override fun onClick(v: View?) {
-        if(v?.id == R.id.iv_send){
+        if (v?.id == R.id.iv_send) {
             proccesing_input()
         }
     }
 
-    fun proccesing_input(){
+    fun proccesing_input() {
         val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
         messageEt.setText("")
-        val (r,g,b) = color
+        val (r, g, b) = color
         benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
         textTxt.setText(phrase)
         this.hideKeyboard()
