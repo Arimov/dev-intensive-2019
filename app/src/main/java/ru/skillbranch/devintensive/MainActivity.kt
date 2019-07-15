@@ -55,11 +55,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             false
 
         }*/
-        turnActionDone(messageEt)
+        enableActionDoneForSendBtn(messageEt)
         sendBtn.setOnClickListener(this)
     }
 
-    private fun turnActionDone(editText: EditText){
+    private fun enableActionDoneForSendBtn(editText: EditText){
         editText.setRawInputType(InputType.TYPE_CLASS_TEXT)
         editText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) sendBtn.performClick()

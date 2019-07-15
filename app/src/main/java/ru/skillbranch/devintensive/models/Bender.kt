@@ -1,5 +1,7 @@
 package ru.skillbranch.devintensive.models
 
+import android.util.Log
+
 class Bender(var status: Status = Status.NORMAL, var question: Question = Question.NAME) {
 
     var countNegativeAnswers = 0
@@ -56,7 +58,9 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
             override fun nextQuestion(): Question = PROFESSION
 
             override fun validate(answer: String): Pair<Boolean, String> {
-                if (answer[0].isUpperCase())
+                if (answer.isBlank())
+                    return (false to "Вы ни чего не ввели :-(")
+                if (answer.trim().firstOrNull()?.isUpperCase()!!)
                     return (true to "")
                 else
                     return (false to "Имя должно начинаться с заглавной буквы")
@@ -66,7 +70,9 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
             override fun nextQuestion(): Question = MATERIAL
 
             override fun validate(answer: String): Pair<Boolean, String> {
-                if (answer[0].isLowerCase())
+                if (answer.isBlank())
+                    return (false to "Вы ни чего не ввели :-(")
+                if (answer.trim().firstOrNull()?.isLowerCase()!!)
                     return (true to "")
                 else
                     return (false to "Профессия должна начинаться со строчной буквы")
@@ -76,6 +82,8 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
             override fun nextQuestion(): Question = BDAY
 
             override fun validate(answer: String): Pair<Boolean, String> {
+                if (answer.isBlank())
+                    return (false to "Вы ни чего не ввели :-(")
                 val regex = Regex(pattern = "(.+\\d.*)")
                 if (!answer.matches(regex))
                     return (true to "")
@@ -87,6 +95,8 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
             override fun nextQuestion(): Question = SERIAL
 
             override fun validate(answer: String): Pair<Boolean, String> {
+                if (answer.isBlank())
+                    return (false to "Вы ни чего не ввели :-(")
                 val regex = Regex(pattern = "\\d+")
                 if (answer.matches(regex))
                     return (true to "")
@@ -98,6 +108,8 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
             override fun nextQuestion(): Question = IDLE
 
             override fun validate(answer: String): Pair<Boolean, String> {
+                if (answer.isBlank())
+                    return (false to "Вы ни чего не ввели :-(")
                 val regex = Regex(pattern = "[-+]?\\d+")
                 if (answer.matches(regex) && answer.length == 7)
                     return (true to "")
@@ -109,6 +121,8 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
             override fun nextQuestion(): Question = IDLE
 
             override fun validate(answer: String): Pair<Boolean, String> {
+                if (answer.isBlank())
+                    return (false to "Вы ни чего не ввели :-(")
                 return (true to "")
             }
         };
