@@ -5,7 +5,6 @@ import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatDelegate
 import ru.skillbranch.devintensive.App
 import ru.skillbranch.devintensive.models.Profile
-import java.util.prefs.Preferences
 
 object PreferencesRepository {
 
@@ -29,7 +28,7 @@ object PreferencesRepository {
     fun getAppTheme(): Int = prefs.getInt(APP_THEME, AppCompatDelegate.MODE_NIGHT_YES)
 
     fun saveProfile(profile: Profile) {
-        with(profile){
+        with(profile) {
             putValue(FIRST_NAME to firstName)
             putValue(LAST_NAME to lastName)
             putValue(ABOUT to about)
@@ -40,12 +39,12 @@ object PreferencesRepository {
     }
 
     fun getProfile(): Profile = Profile(
-        prefs.getString(FIRST_NAME,"")!!,
-        prefs.getString(LAST_NAME,"")!!,
-        prefs.getString(ABOUT,"")!!,
-        prefs.getString(REPOSITORY,"")!!,
-        prefs.getInt(RATING,0),
-        prefs.getInt(RESPECT,0)
+        prefs.getString(FIRST_NAME, "")!!,
+        prefs.getString(LAST_NAME, "")!!,
+        prefs.getString(ABOUT, "")!!,
+        prefs.getString(REPOSITORY, "")!!,
+        prefs.getInt(RATING, 0),
+        prefs.getInt(RESPECT, 0)
     )
 
     private fun putValue(pair: Pair<String, Any>) = with(prefs.edit()) {
@@ -63,6 +62,5 @@ object PreferencesRepository {
 
         apply()
     }
-
 
 }

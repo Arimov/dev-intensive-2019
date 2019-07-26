@@ -1,41 +1,40 @@
 package ru.skillbranch.devintensive.utils
 
 object Utils {
-    fun parseFullName(fullName: String?):Pair<String?, String?>{
-        val parts : List<String>? = fullName?.trim()?.split(" ")
+    fun parseFullName(fullName: String?): Pair<String?, String?> {
+        val parts: List<String>? = fullName?.trim()?.split(" ")
         var firstName = parts?.getOrNull(0)
-        if(firstName.isNullOrEmpty() || firstName.isNullOrBlank()) {
+        if (firstName.isNullOrEmpty() || firstName.isNullOrBlank()) {
             firstName = null
         }
         var lastName = parts?.getOrNull(1)
-        if(lastName.isNullOrEmpty() || lastName.isNullOrBlank()) {
+        if (lastName.isNullOrEmpty() || lastName.isNullOrBlank()) {
             lastName = null
         }
         return firstName to lastName
     }
 
 
-    fun toInitials(firstName: String?, lastName: String?): String?{
+    fun toInitials(firstName: String?, lastName: String?): String? {
         val result: String
         var firstSymbol = ""
         var lastSymbol = ""
-        if(!firstName.isNullOrEmpty() && !firstName.isNullOrBlank()){
-            firstSymbol = firstName.substring(0,1).toUpperCase()
+        if (!firstName.isNullOrEmpty() && !firstName.isNullOrBlank()) {
+            firstSymbol = firstName.substring(0, 1).toUpperCase()
         }
-        if(!lastName.isNullOrEmpty() && !lastName.isNullOrBlank()){
-            lastSymbol = lastName.substring(0,1).toUpperCase()
+        if (!lastName.isNullOrEmpty() && !lastName.isNullOrBlank()) {
+            lastSymbol = lastName.substring(0, 1).toUpperCase()
         }
         result = firstSymbol + lastSymbol
-        if(result == ""){
+        if (result == "") {
             return null
-        }
-        else{
+        } else {
             return result
         }
     }
 
 
-    fun transliteration(payload: String?, divider: String = " "): String?{
+    fun transliteration(payload: String?, divider: String = " "): String? {
         val translDist = mapOf(
             "а" to "a",
 
@@ -169,16 +168,15 @@ object Utils {
 
             "Я" to "Ya"
         )
-        if(payload == null) {
+        if (payload == null) {
             return null
         }
         var result = ""
         val arChar = payload.toCharArray()
-        for(c: Char in arChar){
-            if(c.compareTo(" ".single())==0){
+        for (c: Char in arChar) {
+            if (c.compareTo(" ".single()) == 0) {
                 result += divider
-            }
-            else{
+            } else {
                 result += translDist["$c"]
             }
         }

@@ -32,7 +32,7 @@
                 android:layout_marginRight="@dimen/spacing_huge_32"
                 android:layout_toLeftOf="@id/iv_avatar"
                 android:background="@drawable/btn_round_bg"
-                android:src="@drawable/ic_brightness_high_black_24dp" />
+                android:src="@drawable/ic_switch_day_night" />
 
             <ImageView
                 android:id="@+id/iv_avatar"

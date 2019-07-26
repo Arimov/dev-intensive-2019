@@ -1,6 +1,6 @@
 package ru.skillbranch.devintensive.models
 
-import android.provider.ContactsContract
+import ru.skillbranch.devintensive.utils.Utils
 
 data class Profile(
     val firstName: String,
@@ -11,7 +11,7 @@ data class Profile(
     val respect: Int = 0
 ) {
 
-    val nickName: String = "John Doe" //Implement me
+    val nickName: String = Utils.transliteration("$firstName $lastName", "_")!!
     val rank: String = "Junior Android Developer"
 
     fun toMap(): Map<String, Any> = mapOf(
