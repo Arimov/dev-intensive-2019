@@ -6,6 +6,7 @@ import android.graphics.PorterDuffColorFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.Profile
+import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
 class ProfileActivity : AppCompatActivity() {
@@ -57,6 +59,7 @@ class ProfileActivity : AppCompatActivity() {
                 v.text = it[k].toString()
             }
         }
+        updateAvatar(profile)
     }
 
     private fun initViews(savedInstanceState: Bundle?) {
@@ -100,10 +103,7 @@ class ProfileActivity : AppCompatActivity() {
 
         with(btn_edit) {
             val filter: ColorFilter? = if (isEdit) {
-                PorterDuffColorFilter(
-                    resources.getColor(R.color.color_accent, theme),
-                    PorterDuff.Mode.SRC_IN
-                )
+                PorterDuffColorFilter(getThemeAccentColor(), PorterDuff.Mode.SRC_IN)
             } else {
                 null
             }
@@ -127,6 +127,18 @@ class ProfileActivity : AppCompatActivity() {
         ).apply {
             viewModel.saveProfileData(this)
         }
+    }
+
+    private fun getThemeAccentColor(): Int {
+        val value = TypedValue()
+        theme.resolveAttribute(R.attr.colorAccent, value, true)
+        return value.data
+    }
+
+    private fun updateAvatar(profile: Profile){
+        val initials = Utils.toInitials(profile.firstName, profile.lastName)
+        iv_avatar.generateAvatar(initials, Utils.convertSpToPx(this, 48), theme)
+
     }
 }
 

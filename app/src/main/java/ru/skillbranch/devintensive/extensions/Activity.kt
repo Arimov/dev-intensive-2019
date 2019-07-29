@@ -7,13 +7,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import kotlin.math.roundToLong
 import android.util.TypedValue
-
-
-fun Activity.convertDpToPx(dp: Float): Long {
-    val r = this.resources
-    return TypedValue.applyDimension(
-        TypedValue.COMPLEX_UNIT_DIP, dp, r.displayMetrics).roundToLong()
-}
+import ru.skillbranch.devintensive.utils.Utils
 
 
 fun Activity.hideKeyboard() {
@@ -26,7 +20,7 @@ fun Activity.isKeyboardOpen(): Boolean {
     val rootView = findViewById<View>(android.R.id.content)
     rootView.getWindowVisibleDisplayFrame(r)
     val heightDiff = rootView.height - r.height()
-    val marginOfError = this.convertDpToPx(50F)
+    val marginOfError = Utils.convertDpToPx(this,50)
 
     return heightDiff > marginOfError
 }
