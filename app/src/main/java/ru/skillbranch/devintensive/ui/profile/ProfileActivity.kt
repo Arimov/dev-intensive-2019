@@ -81,6 +81,8 @@ class ProfileActivity : AppCompatActivity() {
         showCurrentMode(isEditMode)
 
         btn_edit.setOnClickListener {
+            viewModel.onRepoEditCompleted(wr_repository.isErrorEnabled)
+
             if (isEditMode) saveProfileInfo()
             isEditMode = !isEditMode
             showCurrentMode(isEditMode)
