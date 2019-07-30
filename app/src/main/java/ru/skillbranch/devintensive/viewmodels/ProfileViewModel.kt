@@ -23,7 +23,6 @@ class ProfileViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        Log.d("M_ProfileViewModel","view model cleated")
     }
 
     fun getProfileData(): LiveData<Profile> = profileData
@@ -32,27 +31,28 @@ class ProfileViewModel : ViewModel() {
 
     fun getRepositoryError(): LiveData<Boolean> = repositoryError
 
-    fun getIsRepoError():LiveData<Boolean> = isRepoError
+    fun getIsRepoError(): LiveData<Boolean> = isRepoError
 
-    fun saveProfileData(profile: Profile){
+    fun saveProfileData(profile: Profile) {
         repository.saveProfile(profile)
         profileData.value = profile
     }
 
     fun switchTheme() {
-        if(appTheme.value == AppCompatDelegate.MODE_NIGHT_YES){
+        if (appTheme.value == AppCompatDelegate.MODE_NIGHT_YES) {
             appTheme.value = AppCompatDelegate.MODE_NIGHT_NO
-        }else{
+        } else {
             appTheme.value = AppCompatDelegate.MODE_NIGHT_YES
         }
         repository.saveAppTheme(appTheme.value!!)
     }
 
     fun onRepositoryChanged(repository: String) {
-        repositoryError.value = isValidateRepository(repository)
+        repositoryError.value =
+            !(isValidateRepository(repository) || repository.isEmpty())//isValidateRepository(repository)
     }
 
-    private fun isValidateRepository(repo: String): Boolean {
+    /*private fun isValidateRepository(repo: String): Boolean {
         val regexStr = "^(?:https://)?(?:www.)?(?:github.com/)[^/|\\s]+(?<!${getRegexExceptions()})(?:/)?$"
         val regex = Regex(regexStr)
         return (repo.isNotEmpty() && !regex.matches(repo))
@@ -65,5 +65,30 @@ class ProfileViewModel : ViewModel() {
             "customer-stories", "security", "login", "join"
         )
         return exceptions.joinToString("|\\b","\\b")
-    }
+    }*/
+
+    private fun isValidateRepository(repo: String): Boolean = repo.matches(
+        Regex(
+            "^(http(s){0,1}:\\/\\/){0,1}(www.){0,1}github.com\\/[A-z\\d](?:[A-z\\d]|-(?=[A-z\\d])){0,38}\$",
+            RegexOption.IGNORE_CASE
+        )
+    ) &&
+            !repo.matches(
+                Regex(
+                    "^.*(" +
+                            "\\/enterprise|" +
+                            "\\/features|" +
+                            "\\/topics|" +
+                            "\\/collections|" +
+                            "\\/trending|" +
+                            "\\/events|" +
+                            "\\/marketplace" +
+                            "|\\/pricing|" +
+                            "\\/nonprofit|" +
+                            "\\/customer-stories|" +
+                            "\\/security|" +
+                            "\\/login|" +
+                            "\\/join)\$", RegexOption.IGNORE_CASE
+                )
+            )
 }

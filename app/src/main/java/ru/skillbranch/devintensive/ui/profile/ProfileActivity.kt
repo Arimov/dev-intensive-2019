@@ -36,7 +36,6 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
         initViews(savedInstanceState)
         initViewModel()
-        Log.d("M_ProfileActivity", "onCreate")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -91,12 +90,13 @@ class ProfileActivity : AppCompatActivity() {
             viewModel.switchTheme()
         }
 
-        et_repository.addTextChangedListener(object: TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { }
-            override fun afterTextChanged(s: Editable?) {
+        et_repository.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 viewModel.onRepositoryChanged(s.toString())
             }
+
+            override fun afterTextChanged(s: Editable?) {}
         })
     }
 
@@ -147,7 +147,7 @@ class ProfileActivity : AppCompatActivity() {
         return value.data
     }
 
-    private fun updateAvatar(profile: Profile){
+    private fun updateAvatar(profile: Profile) {
         val initials = Utils.toInitials(profile.firstName, profile.lastName)
         iv_avatar.generateAvatar(initials, Utils.convertSpToPx(this, 48), theme)
 
@@ -159,7 +159,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun updateRepoError(isError: Boolean) {
         wr_repository.isErrorEnabled = isError
-        wr_repository.error = if (isError) "Невалидный адрес репозитория" else null
+        wr_repository.error = if (isError) "Невалидный адрес репозитория" else ""
     }
 }
 
