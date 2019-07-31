@@ -56,7 +56,7 @@ class ProfileViewModel : ViewModel() {
         isRepoError.value = isError
     }
 
-    /*private fun isValidateRepository(repo: String): Boolean {
+    private fun isValidateRepository(repo: String): Boolean {
         val regexStr = "^(?:https://)?(?:www.)?(?:github.com/)[^/|\\s]+(?<!${getRegexExceptions()})(?:/)?$"
         val regex = Regex(regexStr)
         return (repo.isNotEmpty() && !regex.matches(repo))
@@ -69,9 +69,9 @@ class ProfileViewModel : ViewModel() {
             "customer-stories", "security", "login", "join"
         )
         return exceptions.joinToString("|\\b","\\b")
-    }*/
+    }
 
-    private fun isValidateRepository(repo: String): Boolean = repo.matches(
+/*    private fun isValidateRepository(repo: String): Boolean = repo.matches(
         Regex(
             "^(http(s){0,1}:\\/\\/){0,1}(www.){0,1}github.com\\/[A-z\\d](?:[A-z\\d]|-(?=[A-z\\d])){0,38}\$",
             RegexOption.IGNORE_CASE
@@ -94,5 +94,5 @@ class ProfileViewModel : ViewModel() {
                             "\\/login|" +
                             "\\/join)\$", RegexOption.IGNORE_CASE
                 )
-            )
+            )*/
 }
