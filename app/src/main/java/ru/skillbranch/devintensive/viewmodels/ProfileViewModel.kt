@@ -48,8 +48,7 @@ class ProfileViewModel : ViewModel() {
     }
 
     fun onRepositoryChanged(repository: String) {
-        repositoryError.value =
-            !(isValidateRepository(repository) || repository.isEmpty())//isValidateRepository(repository)
+        repositoryError.value = isValidateRepository(repository)
     }
 
     fun onRepoEditCompleted(isError: Boolean) {
@@ -68,10 +67,10 @@ class ProfileViewModel : ViewModel() {
             "trending", "events", "marketplace", "pricing", "nonprofit",
             "customer-stories", "security", "login", "join"
         )
-        return exceptions.joinToString("|\\b","\\b")
+        return exceptions.joinToString("|\\b", "\\b")
     }
 
-/*    private fun isValidateRepository(repo: String): Boolean = repo.matches(
+    /*private fun isValidateRepository(repo: String): Boolean = repo.matches(
         Regex(
             "^(http(s){0,1}:\\/\\/){0,1}(www.){0,1}github.com\\/[A-z\\d](?:[A-z\\d]|-(?=[A-z\\d])){0,38}\$",
             RegexOption.IGNORE_CASE
