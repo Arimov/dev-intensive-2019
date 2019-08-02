@@ -97,7 +97,7 @@ object Utils {
     }
 
     fun isValidateRepository(repo: String): Boolean = repo.isEmpty() || repo.matches(
-        Regex("^(http(s){0,1}:\\/\\/){0,1}(www.){0,1}github.com\\/[A-z\\d](?:[A-z\\d]|(_|-)(?=[A-z\\d])){0,256}(/)?\$",RegexOption.IGNORE_CASE)) &&
+        Regex("^(https://){0,1}(www.){0,1}github.com\\/[A-z\\d](?:[A-z\\d]|(_|-)(?=[A-z\\d])){0,256}(/)?\$",RegexOption.IGNORE_CASE)) &&
             !repo.matches(Regex("^.*(" +
                     "\\/enterprise|" +
                     "\\/features|" +
