@@ -13,10 +13,10 @@
 
         <ru.skillbranch.devintensive.ui.custom.AspectRatioImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="189dp"
             android:scaleType="centerCrop"
             android:src="@drawable/profile_bg"
-            app:aspectRatio="1.78" />
+            app:aspectRatio="2.2" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -161,9 +161,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/profile_hint_first_name"
-                tools:text="John"
+                android:imeOptions="actionNext"
                 android:inputType="textPersonName"
-                android:imeOptions="actionNext"/>
+                tools:text="John" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
