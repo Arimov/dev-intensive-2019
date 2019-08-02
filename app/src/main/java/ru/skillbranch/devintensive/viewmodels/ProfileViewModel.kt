@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.skillbranch.devintensive.models.Profile
 import ru.skillbranch.devintensive.repositories.PreferencesRepository
+import ru.skillbranch.devintensive.utils.Utils
+
 
 class ProfileViewModel : ViewModel() {
     private val repository: PreferencesRepository = PreferencesRepository
@@ -48,7 +50,7 @@ class ProfileViewModel : ViewModel() {
     }
 
     fun onRepositoryChanged(repository: String) {
-        repositoryError.value = isValidateRepository(repository)
+        repositoryError.value = !isValidateRepository(repository)
     }
 
     fun onRepoEditCompleted(isError: Boolean) {
@@ -56,42 +58,9 @@ class ProfileViewModel : ViewModel() {
     }
 
     private fun isValidateRepository(repo: String): Boolean {
-        val regexStr = "^(https://)?(www.)?(github.com/)(?!(${getRegexExceptions()})(?=/|\\\$))(?![\\\\W])(?!\\\\w+[-]{2})[a-zA-Z0-9-]+(?<![-])(/)?\$"
-        val regex = Regex(regexStr)
-        return (repo.isNotEmpty() && !regex.matches(repo))
+        return Utils.isValidateRepository(repo)
     }
 
-    private fun getRegexExceptions(): String {
-        val exceptions = arrayOf(
-            "enterprise", "features", "topics", "collections",
-            "trending", "events", "marketplace", "pricing", "nonprofit",
-            "customer-stories", "security", "login", "join"
-        )
-        return exceptions.joinToString("|\\b", "\\b")
-    }
 
-    /*private fun isValidateRepository(repo: String): Boolean = repo.matches(
-        Regex(
-            "^(http(s){0,1}:\\/\\/){0,1}(www.){0,1}github.com\\/[A-z\\d](?:[A-z\\d]|-(?=[A-z\\d])){0,38}\$",
-            RegexOption.IGNORE_CASE
-        )
-    ) &&
-            !repo.matches(
-                Regex(
-                    "^.*(" +
-                            "\\/enterprise|" +
-                            "\\/features|" +
-                            "\\/topics|" +
-                            "\\/collections|" +
-                            "\\/trending|" +
-                            "\\/events|" +
-                            "\\/marketplace" +
-                            "|\\/pricing|" +
-                            "\\/nonprofit|" +
-                            "\\/customer-stories|" +
-                            "\\/security|" +
-                            "\\/login|" +
-                            "\\/join)\$", RegexOption.IGNORE_CASE
-                )
-            )*/
+
 }
