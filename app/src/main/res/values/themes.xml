@@ -12,11 +12,14 @@
         <item name="colorIcon">@color/color_gray</item>
         <item name="colorDivider">@color/color_divider_dark</item>
 
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowAnimationStyle">@style/ActivityTransition</item>
     </style>
 <!--
     <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/bg_splash</item>
     </style>
     -->
-
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
 </resources>

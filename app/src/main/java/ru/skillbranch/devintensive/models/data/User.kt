@@ -1,5 +1,6 @@
-package ru.skillbranch.devintensive.models
+package ru.skillbranch.devintensive.models.data
 
+import ru.skillbranch.devintensive.extensions.humanizeDiff
 import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
@@ -36,13 +37,34 @@ data class User (
         fun makeUser(fullName:String?) : User {
             lastId++
             val (firstName, lastName) = Utils.parseFullName(fullName)
-            return  User(lastId.toString(), firstName = firstName,lastName = lastName)
+            return User(
+                lastId.toString(),
+                firstName = firstName,
+                lastName = lastName
+            )
         }
     }
 
+    fun toUserItem() : UserItem {
+        val lastActivity = when {
+            lastVisit == null -> "Ещу ни разу не заходил"
+            isOnline -> "online"
+            else -> "Последний раз был ${lastVisit!!.humanizeDiff()}"
+        }
+
+        return UserItem(
+            id,
+            "${firstName.orEmpty()} ${lastName.orEmpty()}",
+            Utils.toInitials(firstName, lastName),
+            avatar,
+            lastActivity,
+            false,
+            isOnline
+        )
+    }
 
     class Builder {
-        private var id: String = (Factory.lastId++).toString()
+        private var id: String = (lastId++).toString()
         private var firstName: String? = null
         private var lastName: String? = null
         private var avatar: String? = null

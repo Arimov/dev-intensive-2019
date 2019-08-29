@@ -5,8 +5,10 @@ data class ChatItem(
     val avatar: String?,
     val initials: String,
     val title: String,
-    val shortDEscription: String?,
+    val shortDescription: String?,
     val messageCount: Int = 0,
     val lastMessageDate: String?,
-    val isOnline: Boolean = false
+    val isOnline: Boolean = false,
+    val chatType : ChatType = ChatType.SINGLE,
+    var author :String? = null
 )
