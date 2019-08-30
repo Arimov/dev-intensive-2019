@@ -6,7 +6,7 @@ import java.util.*
 
 abstract class BaseMessage(
     val id: String,
-    val from: User?,
+    val from: User,
     val chat: Chat,
     val isIncoming: Boolean = true,
     val date: Date = Date(),

@@ -87,7 +87,7 @@ class ChatAdapter(val listener : (ChatItem) -> Unit): RecyclerView.Adapter<ChatA
                 //add custom avatar view, будет позже мастер класс, time: 0:41 tutorial 5
                 Glide.with(itemView)
                     .clear(iv_avatar_single)
-                iv_avatar_single.setInitials(item.initials)
+                //iv_avatar_single.setInitials(item.initials)
             } else {
                 Glide.with(itemView)
                     .load(item.avatar)
