@@ -1,5 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="ActivityTransition" parent="android:style/Animation.Activity">
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
+
+    <style name="ActivityTransitions" parent="android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/bottom_up</item>
         <item name="android:activityOpenExitAnimation">@anim/idle</item>
         <item name="android:activityCloseEnterAnimation">@anim/idle</item>
@@ -31,7 +36,7 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="Profile.Header.NickName" parent="Profile.Header">
+    <style name="Profile.Header.Nickname" parent="Profile.Header">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textSize">@dimen/font_large_20</item>
         <item name="android:layout_marginTop">@dimen/spacing_normal_16</item>
@@ -54,13 +59,16 @@
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textSize">@dimen/font_large_20</item>
     </style>
-
     <style name="Profile.InfoItem">
         <item name="android:paddingTop">@dimen/spacing_normal_16</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:paddingLeft">@dimen/spacing_normal_16</item>
         <item name="android:paddingRight">@dimen/spacing_normal_16</item>
-        <item name="android:minHeight">72dp</item>
+        <item name="android:minHeight">@dimen/space_maximum_72</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/ic_splash</item>
     </style>
 
 </resources>
