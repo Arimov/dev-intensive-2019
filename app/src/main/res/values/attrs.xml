@@ -7,9 +7,34 @@
     <attr name="colorAccentedSurface" format="reference"/>
     <attr name="colorDivider" format="reference"/>
     <attr name="colorIcon" format="reference"/>
+    <attr name="colorGrayDark" format="reference"/>
+    <attr name="colorSVIndicator" format="reference"/>
+    <attr name="colorItemBackground" format="reference"/>
+    <attr name="colorSnackBarText" format="reference"/>
+    <attr name="colorDoneIcon" format="reference"/>
+    <attr name="colorChip" format="reference"/>
+    <attr name="colorChipCloseIcon" format="reference"/>
+
+    <!-- for themes -->
+    <attr name="colorToolbar" format="reference"/>
+    <attr name="colorIndicator" format="reference"/>
+    <attr name="colorBackground" format="reference"/>
+    <attr name="colorItemView" format="reference"/>
+    <attr name="colorCounter" format="reference"/>
+    <attr name="colorArchiveIcon" format="reference"/>
+    <attr name="colorSwipe" format="reference"/>
+    <attr name="colorSelected" format="reference"/>
+    <attr name="colorSnackBar" format="reference"/>
+    <attr name="colorChipCloseTint" format="reference"/>
+    <attr name="colorChipBackground" format="reference"/>
+
 
     <declare-styleable name="CircleImageView">
         <attr name="cv_borderColor" format="color"/>
         <attr name="cv_borderWidth" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="AvatarImageView">
+        <attr name="initials" format="string"/>
     </declare-styleable>
 </resources>

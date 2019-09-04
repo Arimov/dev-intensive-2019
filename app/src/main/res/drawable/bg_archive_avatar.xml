@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <size android:width="@dimen/avatar_item_size"/>
+            <size android:height="@dimen/avatar_item_size"/>
+            <solid android:color="?attr/colorArchiveIcon"/>
+        </shape>
+    </item>
+</selector>
