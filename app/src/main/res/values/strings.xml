@@ -1,28 +1,10 @@
 <resources>
-    <!--Hardcore Strings-->
     <string name="app_name">Chat Dev-intensive</string>
-    <string name="profile_rank">Junior Android Developer</string>
-    <string name="edit_text_hint">Введите сообщение</string>
     <string name="profile_label_rating">Рейтинг</string>
-    <string name="profile_label_rating_count">0</string>
     <string name="profile_label_respect">Уважение</string>
-    <string name="profile_label_respect_count">0</string>
-
-    <!--Hints-->
     <string name="profile_hint_repository">Репозиторий</string>
     <string name="profile_hint_about">О себе</string>
     <string name="profile_hint_last_name">Фамилия</string>
     <string name="profile_hint_first_name">Имя</string>
-
-    <!--Content Description-->
-    <string name="profile_content_description_switch_theme">switch theme button</string>
-    <string name="profile_content_description_edit_button">edit button</string>
-    <string name="profile_content_description_avatar">avatar</string>
-    <string name="profile_content_description_edit_mode_off">edit mode off</string>
-    <string name="profile_content_description_repository">your repository</string>
-    <string name="profile_content_description_repository_icon">repository icon</string>
-    <string name="profile_content_description_about_icon">about icon</string>
     <string name="menu_search_title">Поиск</string>
-    <string name="archive_title">Архив чатов</string>
-    <string name="selected_indicator">selected indicator</string>
 </resources>
